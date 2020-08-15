@@ -16,7 +16,7 @@ const upload = multer({
 // @access    Public
 router.get('/', async (req, res) => {
   try {
-    const articles = await Article.find().sort({ date: -1 });
+    const articles = await Article.find().sort({ created_at: -1 });
     res.json(articles);
   } catch (err) {
     console.error(err.message);

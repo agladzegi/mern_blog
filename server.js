@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
-const path = require('path');
 require('dotenv').config();
 
 const connectDB = async () => {
@@ -28,7 +27,8 @@ app.use(morgan('common'));
 app.use(cors({ origin: 'http://localhost:3000', optionsSuccessStatus: 200 }));
 app.use(express.json({ extended: false }));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'uploads')));
+app.use(express.static('uploads'));
+app.use('/static/uploads', express.static('uploads'));
 
 // Routes
 app.use('/api/users', require('./routes/users'));
