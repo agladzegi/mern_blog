@@ -6,7 +6,7 @@ import ArticleListItem from './ArticleListItem';
 const ArticleList = () => {
   const articleContext = useContext(ArticlesContext);
 
-  const { articles, loading, getArticles } = articleContext;
+  const { articles, loading, getArticles, error } = articleContext;
 
   useEffect(() => {
     getArticles();
@@ -15,6 +15,10 @@ const ArticleList = () => {
 
   if (loading) {
     return <h3>Loding...</h3>;
+  }
+
+  if (error) {
+    return <h3>{error}</h3>;
   }
 
   return articles.length > 0 ? (

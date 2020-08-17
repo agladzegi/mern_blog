@@ -53,6 +53,7 @@ router.post('/', async (req, res) => {
       user: {
         id: user.id,
         name: user.name,
+        image: user.image,
       },
     };
 
@@ -60,7 +61,7 @@ router.post('/', async (req, res) => {
       payload,
       process.env.JWT_SECRET,
       {
-        expiresIn: 360000,
+        expiresIn: '1h',
       },
       (err, token) => {
         if (err) throw err;

@@ -62,7 +62,7 @@ router.post('/', async (req, res) => {
           let user = await User.findOne({ email });
 
           if (user) {
-            return res.status(400).json({ msg: 'User Already exists' });
+            return res.status(400).json({ msg: 'User already exists' });
           }
 
           let userImg;
@@ -116,6 +116,7 @@ router.post('/', async (req, res) => {
             user: {
               id: user.id,
               name: user.name,
+              image: user.image,
             },
           };
 
@@ -123,7 +124,7 @@ router.post('/', async (req, res) => {
             payload,
             process.env.JWT_SECRET,
             {
-              expiresIn: 360000,
+              expiresIn: '1h',
             },
             (err, token) => {
               if (err) throw err;
